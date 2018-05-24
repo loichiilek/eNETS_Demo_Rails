@@ -1,0 +1,41 @@
+<% provide(:title, "Home") %>
+<script src="https://uat2.enets.sg/GW2/js/jquery-3.1.1.min.js"
+    type="text/javascript"></script>
+<script src="https://uat2.enets.sg/GW2/pluginpages/env.jsp"></script>
+<script type="text/javascript"
+    src="https://uat2.enets.sg/GW2/js/apps.js"></script>
+<div class="center jumbotron">
+  <h1>eNETS Test Portal</h1>
+
+  <form class="input-form">
+    <span class="a">Transaction Amount:   <input class="input" id="txnAmt" type="number" name="txnAmt" placeholder=""></span>
+    <br><br>
+    <input type="submit" value="Generate Payload">
+    <br>
+    <br>
+    <div class="a">Transaction Request:</div> <%= text_area_tag(:txn_req, @txn_req, size: "100x6") %>
+    <div class="a">HMAC:</div>  <%= text_area_tag(:hmac, @hmac, size: "100x1") %>
+    <div class="a">Key ID:</div> <%= text_area_tag(:keyID, @keyID, size: "100x1") %>
+    <br>
+    <br>
+    <input type="button" value="Send Payload" onclick="checkOut()" style="font-size : 15px;">
+  </form>
+
+</div>
+<div class="payment-section">
+
+  <fieldset>
+      <div id="ajaxResponse"></div>
+  </fieldset>
+</div>
+<script>
+  function checkOut() {
+  	// window.alert(txn_req.value);
+    sendPayLoad(txn_req.value, hmac.value, keyID.value);
+  };
+</script>
+
+
+
+<!-- <%= link_to image_tag("dev_at_nets.png", alt: "eNETS logo", height: "71", width:"202"),
+            'https://api-developer.nets.com.sg/' %> -->
